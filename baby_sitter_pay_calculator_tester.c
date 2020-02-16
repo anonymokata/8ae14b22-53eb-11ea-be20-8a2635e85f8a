@@ -26,12 +26,27 @@ static void whenBabySitterCalculatorIsPassedAnInvalidTimesItReturnsZero(void)
 	assert(calculateBabySitterPay(359, 401) == 0);
 	assert(calculateBabySitterPay(1700, 1700) == 0);
 	assert(calculateBabySitterPay(0, 1200) == 0);
+
+	/* Make sure the start time is before the end time */
+	assert(calculateBabySitterPay(200, 2359) == 0);
+	assert(calculateBabySitterPay(100, 1) == 0);
+}
+
+
+static void whenBabySitterCalculatorIsPassedValidTimesItReturnsOne(void)
+{
+	assert(calculateBabySitterPay(1700, 2359) == 1);
+	assert(calculateBabySitterPay(1700, 400) == 1);
+	assert(calculateBabySitterPay(2359, 359) == 1);
+	assert(calculateBabySitterPay(1700, 1701) == 1);
+	assert(calculateBabySitterPay(359, 400) == 1);
 }
 
 
 int main(void)
 {
 	whenBabySitterCalculatorIsPassedAnInvalidTimesItReturnsZero();
+	whenBabySitterCalculatorIsPassedValidTimesItReturnsOne();
 
 	return 0;
 }

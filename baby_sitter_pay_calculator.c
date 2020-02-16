@@ -10,6 +10,12 @@
 #define LATEST_TIME						(2359)
 
 
+static inline convertTo12HourBasedTime(size_t hour)
+{
+	return ((hour >= 1200) ? (hour - 1200) : (hour + 1200));
+}
+
+
 static size_t validateInput(size_t start_time, size_t stop_time)
 {
 	size_t validRequest = 0;
@@ -18,7 +24,8 @@ static size_t validateInput(size_t start_time, size_t stop_time)
 		(((start_time >= EARLIEST_START_TIME) && (start_time <= LATEST_TIME)) ||
 			((start_time >= EARLIEST_TIME) && (start_time < LATEST_STOP_TIME))) &&
 		(((stop_time > EARLIEST_START_TIME) && (stop_time <= LATEST_TIME)) ||
-			((stop_time >= EARLIEST_TIME) && (stop_time <= LATEST_STOP_TIME))))
+			((stop_time >= EARLIEST_TIME) && (stop_time <= LATEST_STOP_TIME))) &&
+		(convertTo12HourBasedTime(start_time) < convertTo12HourBasedTime(stop_time)))
 	{
 		validRequest = 1;
 	}
