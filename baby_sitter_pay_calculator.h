@@ -8,12 +8,13 @@
 						on a 24 hour clock format.  For instance,
 						5AM would be 500 and 7:30PM would be 1930.
 						Acceptable values are >= 1700 and <= 2359,
-						and >= 0000 and <= 359.
+						and >= 0000 and <= 359.  Midnight is represented as 0.
+
 	@param stop_time	The time the baby sitter is to stop as entered
 						on a 24 hour clock format.  For instance,
 						5AM would be 500 and 7:30PM would be 1930.
 						Acceptable values are >= 1701 and <= 2359,
-						and >= 0000 and <= 400.
+						and >= 0000 and <= 400.  Midnight is represented as 0.
 
 	@return				The amount of pay the baby sitter will receive upon
 						completion or 0 if the request is invalid.
