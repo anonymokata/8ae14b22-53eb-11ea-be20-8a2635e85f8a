@@ -12,13 +12,15 @@
 
 static inline convertTo12HourBasedTime(size_t hour)
 {
+	/* This function normalizes the times so we can make sure the stop
+	   time is after the start time. */
 	return ((hour >= 1200) ? (hour - 1200) : (hour + 1200));
 }
 
 
-static size_t validateInput(size_t start_time, size_t stop_time)
+static size_t validateBabySittingTimes(size_t start_time, size_t stop_time)
 {
-	size_t validRequest = 0;
+	size_t validTimes = 0;
 
 	if ((start_time != stop_time) &&
 		(((start_time >= EARLIEST_START_TIME) && (start_time <= LATEST_TIME)) ||
@@ -27,15 +29,25 @@ static size_t validateInput(size_t start_time, size_t stop_time)
 			((stop_time >= EARLIEST_TIME) && (stop_time <= LATEST_STOP_TIME))) &&
 		(convertTo12HourBasedTime(start_time) < convertTo12HourBasedTime(stop_time)))
 	{
-		validRequest = 1;
+		validTimes = 1;
 	}
 
-	printf("%s - vR: %u\n", __func__, validRequest);
-	return validRequest;
+	return validTimes;
 }
 
 
-size_t calculateBabySitterPay(size_t start_time, size_t stop_time)
+size_t calculateBabySitterPay(char const family_name, size_t start_time, size_t stop_time)
 {
-	return validateInput(start_time, stop_time);
+	size_t sitterPay;
+
+	if ((sitterPay = validateBabySittingTimes(start_time, stop_time)) == 1)
+	{
+		if (family_name == 0)
+		{
+			sitterPay = 0;
+		}
+	}
+
+	printf("%s - sP: %u\n", __func__, sitterPay);
+	return sitterPay;
 }
