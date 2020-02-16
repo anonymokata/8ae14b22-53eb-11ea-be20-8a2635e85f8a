@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "baby_sitter_pay_calculator.h"
+#include "baby_sitter_family_info.h"
 
 
 /* Start and stop times for a standard 24 hour clock. */
@@ -38,11 +39,16 @@ static size_t validateBabySittingTimes(size_t start_time, size_t stop_time)
 
 size_t calculateBabySitterPay(char const family_name, size_t start_time, size_t stop_time)
 {
-	size_t sitterPay;
+	size_t sitterPay = 0;
+	family_rate_info const* familyRates;
 
 	if ((sitterPay = validateBabySittingTimes(start_time, stop_time)) == 1)
 	{
-		if (family_name == 0)
+		if ((familyRates = getFamilyRates(family_name)) != NULL)
+		{
+			sitterPay = 1;
+		}
+		else
 		{
 			sitterPay = 0;
 		}

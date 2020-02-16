@@ -138,10 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="baby_sitter_family_info.c" />
     <ClCompile Include="baby_sitter_pay_calculator.c" />
     <ClCompile Include="baby_sitter_pay_calculator_tester.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="baby_sitter_family_info.h" />
     <ClInclude Include="baby_sitter_pay_calculator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

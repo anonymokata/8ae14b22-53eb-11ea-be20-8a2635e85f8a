@@ -21,9 +21,15 @@
     <ClCompile Include="baby_sitter_pay_calculator.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="baby_sitter_family_info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="baby_sitter_pay_calculator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="baby_sitter_family_info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -24,7 +24,8 @@
 	@return				The amount of pay the baby sitter will receive upon
 						completion or 0 if the request is invalid.
 */
-size_t calculateBabySitterPay(char const family_name, size_t start_time, size_t stop_time);
+size_t calculateBabySitterPay(char const family_name, size_t start_time,
+	size_t stop_time);
 
 
 #endif
