@@ -80,7 +80,7 @@ static void whenBabySitterCalculatorIsPassedTimesThatSpanRates(void)
 }
 
 
-static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHours(void)
+static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursSingleRate(void)
 {
 	assert(calculateBabySitterPay('A', 30, 145) == 40);
 	assert(calculateBabySitterPay('A', 1700, 1701) == 15);
@@ -94,6 +94,20 @@ static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHo
 }
 
 
+static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursMultipleRateSpan(void)
+{
+	assert(calculateBabySitterPay('A', 2230, 2301) == 35);
+	assert(calculateBabySitterPay('A', 1701, 359) == 190);
+
+	assert(calculateBabySitterPay('B', 1829, 2245) == 56);
+	assert(calculateBabySitterPay('B', 2222, 159) == 48);
+	assert(calculateBabySitterPay('B', 1701, 352) == 140);
+
+	assert(calculateBabySitterPay('C', 2015, 15) == 81);
+	assert(calculateBabySitterPay('C', 1759, 301) == 189);
+}
+
+
 int main(void)
 {
 	whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero();
@@ -101,7 +115,8 @@ int main(void)
 	whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne();
 	whenBabySitterCalculatorIsPassedMultipleHoursInOneRate();
 	whenBabySitterCalculatorIsPassedTimesThatSpanRates();
-	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHours();
+	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursSingleRate();
+	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursMultipleRateSpan();
 
 	return 0;
 }
