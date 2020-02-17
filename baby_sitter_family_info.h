@@ -15,7 +15,7 @@
    least one of these and can have multiple. */
 typedef struct
 {
-	size_t hourlyRrate;
+	size_t hourlyRate;
 	size_t startTime;
 	size_t stopTime;
 } rateInfo;

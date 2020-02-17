@@ -33,12 +33,16 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 {
 	size_t sitterPay = 0;
 	familyRateInfo const* familyRates;
+	size_t idx, adjustedStart, adjustedStop;
 
 	if ((validateBabySittingTimes(startTime, stopTime)) == 1)
 	{
 		if ((familyRates = getFamilyRates(familyName)) != NULL)
 		{
+			adjustedStart = CONVERT_TO_12_HOUR(startTime);
+			adjustedStop = CONVERT_TO_12_HOUR(stopTime);
 
+			sitterPay = familyRates->rates->hourlyRate * 1;
 		}
 	}
 
