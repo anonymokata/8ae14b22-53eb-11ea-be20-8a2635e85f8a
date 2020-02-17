@@ -42,7 +42,24 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 			adjustedStart = CONVERT_TO_12_HOUR(startTime);
 			adjustedStop = CONVERT_TO_12_HOUR(stopTime);
 
-			sitterPay = familyRates->rates->hourlyRate * 1;
+			for (idx = 0; idx < MAX_RATE_PLANS; idx++)
+			{
+				if (adjustedStop > familyRates->rates[idx].stopTime)
+				{
+					sitterPay += (((familyRates->rates[idx].stopTime - adjustedStart) *
+						familyRates->rates[idx].hourlyRate) / 100);
+
+					/* Set the new start to be the end of the current period so we can subtract*/
+					adjustedStart = familyRates->rates[idx].stopTime;
+				}
+				else
+				{
+					/* We've gotten to a point where our ending time is <= a rate plan. */
+					sitterPay += (((adjustedStop - adjustedStart) *
+						familyRates->rates[idx].hourlyRate) / 100);
+					break;
+				}
+			}
 		}
 	}
 

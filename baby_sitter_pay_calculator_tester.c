@@ -50,10 +50,11 @@ static void whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne(void)
 }
 
 
-static void whenBabySitterCalculatorIsPassedLessThanOneHourItReturnsTheRateXOne(void)
+static void whenBabySitterCalculatorIsPassedTimesThatSpanRates(void)
 {
-	assert(calculateBabySitterPay('A', 1700, 1730) == 15);
-	assert(calculateBabySitterPay('A', 2300, 2301) == 20);
+	assert(calculateBabySitterPay('A', 2200, 0) == 35);
+	assert(calculateBabySitterPay('A', 1800, 200) == 135);
+	assert(calculateBabySitterPay('A', 1700, 400) == 190);
 }
 
 
@@ -62,7 +63,7 @@ int main(void)
 	whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero();
 	whenBabySitterCalculatorIsPassedAnInvalidFamilyNameItReturnsZero();
 	whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne();
-//	whenBabySitterCalculatorIsPassedLessThanOneHourItReturnsTheRateXOne();
+	whenBabySitterCalculatorIsPassedTimesThatSpanRates();
 
 	return 0;
 }
