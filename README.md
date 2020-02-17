@@ -5,14 +5,14 @@ https://github.com/PillarTechnology/kata-babysitter
 
 It was built with Microsoft Visual Studio Community 2019, Version 16.4.5.
 
-To run the program, download or clone the solution into Microsoft Visual Studio 2019.
+# To run the program, download or clone the solution into Microsoft Visual Studio 2019.
     Right click on the BabySitterKata.sln file in the Solution Explorer and select Clean.
     Right click on the BabySitterKata.sln file in the Solution Explorer and select Build.
     Right click on the BabySitterKata.vcxproj file in the Solution Explorer and select Debug.
 
 After executing, there should be no assertions and the following text "All Baby Sitter Calculator Tests Passed!" is printed.
 
-There were some assumptions I made to implement this:
+# There were some assumptions I made to implement this:
     Any fractional hour was rounded up to an hour of pay.
         For instance if 1 minute was worked, it was rounded up to 1 hour of that rate plan.
     Times must be entered as a 24 clock with 0 being midnight and not 2400.
