@@ -101,7 +101,7 @@ static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHo
 
 	assert(calculateBabySitterPay('B', 1829, 2245) == 56);
 	assert(calculateBabySitterPay('B', 2222, 159) == 48);
-	assert(calculateBabySitterPay('B', 1701, 352) == 140);
+	assert(calculateBabySitterPay('B', 1745, 352) == 140);
 
 	assert(calculateBabySitterPay('C', 2015, 15) == 81);
 	assert(calculateBabySitterPay('C', 1759, 301) == 189);

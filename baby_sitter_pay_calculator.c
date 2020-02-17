@@ -29,11 +29,19 @@ static size_t validateBabySittingTimes(size_t startTime, size_t stopTime)
 }
 
 
+static size_t calculatePay(size_t hours, size_t rate)
+{
+	/* Round to the nearest hour. */
+	hours = ((hours % 100) ? hours + 100 : hours);
+	return ((hours / 100) * rate);
+}
+
+
 size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t stopTime)
 {
 	size_t sitterPay = 0;
 	familyRateInfo const* familyRates;
-	size_t idx, adjustedStart, adjustedStop, numHours;
+	size_t idx, adjustedStart, adjustedStop;
 
 	if ((validateBabySittingTimes(startTime, stopTime)) == 1)
 	{
@@ -44,40 +52,23 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 
 			for (idx = 0; idx < MAX_RATE_PLANS; idx++)
 			{
-				numHours = 0;
-
 				if (adjustedStop > familyRates->rates[idx].stopTime)
 				{
 					/* Make sure the start time falls into this bucket. */
 					if (adjustedStart < familyRates->rates[idx].stopTime)
 					{
-						numHours = familyRates->rates[idx].stopTime - adjustedStart;
+						sitterPay += calculatePay(familyRates->rates[idx].stopTime - adjustedStart,
+							familyRates->rates[idx].hourlyRate);
 
-						/* Round any fractional hour to a full hour in the
-						   same rate plan. */
-						if (numHours % 100)
-						{
-							numHours += 100;
-						}
-
-						sitterPay += (numHours / 100 ) * familyRates->rates[idx].hourlyRate;
-
-						/* Set the new start to be the end of the current period so we can subtract*/
+						/* Set the new start to be the end of the current period so the
+						   next subtraction will not double count hours. */
 						adjustedStart = familyRates->rates[idx].stopTime;
 					}
 				}
 				else
 				{
-					numHours = adjustedStop - adjustedStart;
-
-					/* Round any fractional hour to a full hour in the
-					   same rate plan. */
-					if (numHours % 100)
-					{
-						numHours += 100;
-					}
-
-					sitterPay += (numHours / 100) * familyRates->rates[idx].hourlyRate;
+					sitterPay += calculatePay(adjustedStop - adjustedStart,
+						familyRates->rates[idx].hourlyRate);
 					break;
 				}
 			}
