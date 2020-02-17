@@ -4,7 +4,7 @@
 #include "baby_sitter_pay_calculator.h"
 
 
-static void whenBabySitterCalculatorIsPassedAnInvalidTimesItReturnsZero(void)
+static void whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero(void)
 {
 	/* Start and stop are the same */
 	assert(calculateBabySitterPay('A', 1701, 1701) == 0);
@@ -42,21 +42,26 @@ static void whenBabySitterCalculatorIsPassedAnInvalidFamilyNameItReturnsZero(voi
 }
 
 
-static void whenBabySitterCalculatorIsPassedValidParametersItReturnsOne(void)
+static void whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne(void)
 {
-	assert(calculateBabySitterPay('A', 1700, 2359) == 1);
-	assert(calculateBabySitterPay('B', 1700, 400) == 1);
-	assert(calculateBabySitterPay('C', 2359, 359) == 1);
-	assert(calculateBabySitterPay('A', 1700, 1701) == 1);
-	assert(calculateBabySitterPay('B', 359, 400) == 1);
+	assert(calculateBabySitterPay('A', 1700, 1800) == 15);
+	assert(calculateBabySitterPay('A', 2300, 0) == 20);
+}
+
+
+static void whenBabySitterCalculatorIsPassedLessThanOneHourItReturnsTheRateXOne(void)
+{
+	assert(calculateBabySitterPay('A', 1700, 1730) == 15);
+	assert(calculateBabySitterPay('A', 2300, 2301) == 20);
 }
 
 
 int main(void)
 {
-	whenBabySitterCalculatorIsPassedAnInvalidTimesItReturnsZero();
+	whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero();
 	whenBabySitterCalculatorIsPassedAnInvalidFamilyNameItReturnsZero();
-	whenBabySitterCalculatorIsPassedValidParametersItReturnsOne();
+//	whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne();
+//	whenBabySitterCalculatorIsPassedLessThanOneHourItReturnsTheRateXOne();
 
 	return 0;
 }

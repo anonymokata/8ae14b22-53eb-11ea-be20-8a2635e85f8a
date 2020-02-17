@@ -2,6 +2,11 @@
 #define _BABY_SITTER_FAMILY_INFO_H
 
 
+/* This will make it easier to subtract times that span over night.
+   It will make the later time greater than the earlier time. */
+#define CONVERT_TO_12_HOUR(hour) ((hour >= 1200) ? (hour - 1200) : (hour + 1200))
+
+
 /* The maximum number of different rates allowed per family.  */
 #define MAX_RATE_PLANS	(3)
 
@@ -10,10 +15,10 @@
    least one of these and can have multiple. */
 typedef struct
 {
-	size_t hourly_rate;
-	size_t start_time;
-	size_t stop_time;
-} rate_info;
+	size_t hourlyRrate;
+	size_t startTime;
+	size_t stopTime;
+} rateInfo;
 
 
 /* The family rate information which consists of a name along with an array
@@ -21,18 +26,18 @@ typedef struct
 typedef struct
 {
 	char const name;
-	rate_info rates[MAX_RATE_PLANS];
-} family_rate_info;
+	rateInfo rates[MAX_RATE_PLANS];
+} familyRateInfo;
 
 
 /*	@brief				Finds the family rate information given a family name.
 
-	@param family_name	The name of the family that is requesting the
+	@param familyName	The name of the family that is requesting the
 						baby sitter.
 
 	@return				A pointer to the family_rate_info structure.
 */
-family_rate_info const* getFamilyRates(char const family_name);
+familyRateInfo const* getFamilyRates(char const familyName);
 
 
 #endif

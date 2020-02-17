@@ -4,35 +4,40 @@
 
 
 /* The family rate table which describes the rates of each family. */
-static family_rate_info const family_rates[] =
+static familyRateInfo const familyRates[] =
 {
 	{ 'A',
 		{
-			{ 15, 1700, 2259 }, { 20, 2300, 400 }
+			{ 15,	CONVERT_TO_12_HOUR(1700),	CONVERT_TO_12_HOUR(2300) },
+			{ 20,	CONVERT_TO_12_HOUR(2300),	CONVERT_TO_12_HOUR(400) }
 		}
 	},
 	{ 'B',
 		{
-			{ 12, 1700, 2159 }, { 8, 2200, 2359 }, { 16, 0, 400 }
+			{ 12,	CONVERT_TO_12_HOUR(1700),	CONVERT_TO_12_HOUR(2200) },
+			{ 8,	CONVERT_TO_12_HOUR(2200),	CONVERT_TO_12_HOUR(0) },
+			{ 16,	CONVERT_TO_12_HOUR(0),		CONVERT_TO_12_HOUR(400) }
 		}
 	},
 	{ 'C',
 		{
-			{ 21, 1700, 2159 }, { 15, 2200, 400 }
+			{ 21,	CONVERT_TO_12_HOUR(1700),	CONVERT_TO_12_HOUR(2200) },
+			{ 15,	CONVERT_TO_12_HOUR(2200),	CONVERT_TO_12_HOUR(400) }
 		}
 	}
 };
 
 
-family_rate_info const* getFamilyRates(char const family_name)
+familyRateInfo const* getFamilyRates(char const familyName)
 {
-	family_rate_info const* familyInfo = NULL;
+	familyRateInfo const* familyInfo = NULL;
+	size_t idx;
 
-	for (size_t idx = 0; idx < sizeof(family_rates) / sizeof(family_rates[0]); idx++)
+	for (idx = 0; idx < sizeof(familyRates) / sizeof(familyRates[0]); idx++)
 	{ 
-		if (family_rates[idx].name == family_name)
+		if (familyRates[idx].name == familyName)
 		{
-			familyInfo = &family_rates[idx];
+			familyInfo = &familyRates[idx];
 			break;
 		}	
 	}

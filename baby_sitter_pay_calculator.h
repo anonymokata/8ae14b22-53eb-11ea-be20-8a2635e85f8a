@@ -4,17 +4,17 @@
 
 /*	@brief				Calculates the baby sitter's pay for a night of work.
 
-	@param family_name	The name of the family that is requesting the
+	@param familyName	The name of the family that is requesting the
 						baby sitter.
 
-	@param start_time	The time the baby sitter is to start as	entered
+	@param startTime	The time the baby sitter is to start as	entered
 						on a 24 hour clock format.  For instance,
 						3:30AM would be 330 and 7:30PM would be 1930.
 						Acceptable values are >= 1700 and <= 2359,
 						and >= 0 and <= 359.  Midnight is represented as 0.
 						Do NOT prepend any 0's, only append them.
 
-	@param stop_time	The time the baby sitter is to stop as entered
+	@param stopTime		The time the baby sitter is to stop as entered
 						on a 24 hour clock format.  For instance,
 						3:30AM would be 330 and 7:30PM would be 1930.
 						Acceptable values are >= 1701 and <= 2359,
@@ -24,8 +24,8 @@
 	@return				The amount of pay the baby sitter will receive upon
 						completion or 0 if the request is invalid.
 */
-size_t calculateBabySitterPay(char const family_name, size_t start_time,
-	size_t stop_time);
+size_t calculateBabySitterPay(char const familyName, size_t startTime,
+	size_t stopTime);
 
 
 #endif

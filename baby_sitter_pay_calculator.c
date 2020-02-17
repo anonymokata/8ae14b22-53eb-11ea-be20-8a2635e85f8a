@@ -11,24 +11,16 @@
 #define LATEST_TIME						(2359)
 
 
-static inline convertTo12HourBasedTime(size_t hour)
-{
-	/* This function normalizes the times so we can make sure the stop
-	   time is after the start time. */
-	return ((hour >= 1200) ? (hour - 1200) : (hour + 1200));
-}
-
-
-static size_t validateBabySittingTimes(size_t start_time, size_t stop_time)
+static size_t validateBabySittingTimes(size_t startTime, size_t stopTime)
 {
 	size_t validTimes = 0;
 
-	if ((start_time != stop_time) &&
-		(((start_time >= EARLIEST_START_TIME) && (start_time <= LATEST_TIME)) ||
-			((start_time >= EARLIEST_TIME) && (start_time < LATEST_STOP_TIME))) &&
-		(((stop_time > EARLIEST_START_TIME) && (stop_time <= LATEST_TIME)) ||
-			((stop_time >= EARLIEST_TIME) && (stop_time <= LATEST_STOP_TIME))) &&
-		(convertTo12HourBasedTime(start_time) < convertTo12HourBasedTime(stop_time)))
+	if ((startTime != stopTime) &&
+		(((startTime >= EARLIEST_START_TIME) && (startTime <= LATEST_TIME)) ||
+			((startTime >= EARLIEST_TIME) && (startTime < LATEST_STOP_TIME))) &&
+		(((stopTime > EARLIEST_START_TIME) && (stopTime <= LATEST_TIME)) ||
+			((stopTime >= EARLIEST_TIME) && (stopTime <= LATEST_STOP_TIME))) &&
+		(CONVERT_TO_12_HOUR(startTime) < CONVERT_TO_12_HOUR(stopTime)))
 	{
 		validTimes = 1;
 	}
@@ -37,20 +29,16 @@ static size_t validateBabySittingTimes(size_t start_time, size_t stop_time)
 }
 
 
-size_t calculateBabySitterPay(char const family_name, size_t start_time, size_t stop_time)
+size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t stopTime)
 {
 	size_t sitterPay = 0;
-	family_rate_info const* familyRates;
+	familyRateInfo const* familyRates;
 
-	if ((sitterPay = validateBabySittingTimes(start_time, stop_time)) == 1)
+	if ((validateBabySittingTimes(startTime, stopTime)) == 1)
 	{
-		if ((familyRates = getFamilyRates(family_name)) != NULL)
+		if ((familyRates = getFamilyRates(familyName)) != NULL)
 		{
-			sitterPay = 1;
-		}
-		else
-		{
-			sitterPay = 0;
+
 		}
 	}
 
