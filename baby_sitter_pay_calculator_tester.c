@@ -118,5 +118,6 @@ int main(void)
 	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursSingleRate();
 	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHoursMultipleRateSpan();
 
+	printf("All Baby Sitter Calculator Tests Passed!\n");
 	return 0;
 }
