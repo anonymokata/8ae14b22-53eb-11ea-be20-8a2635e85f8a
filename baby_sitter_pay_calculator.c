@@ -44,6 +44,8 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 
 			for (idx = 0; idx < MAX_RATE_PLANS; idx++)
 			{
+				numHours = 0;
+
 				if (adjustedStop > familyRates->rates[idx].stopTime)
 				{
 					/* Make sure the start time falls into this bucket. */
@@ -82,6 +84,5 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 		}
 	}
 
-	printf("%s - sP: %u\n", __func__, sitterPay);
 	return sitterPay;
 }

@@ -82,7 +82,15 @@ static void whenBabySitterCalculatorIsPassedTimesThatSpanRates(void)
 
 static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHours(void)
 {
-	assert(calculateBabySitterPay('A', 2200, 2230) == 15);
+	assert(calculateBabySitterPay('A', 30, 145) == 40);
+	assert(calculateBabySitterPay('A', 1700, 1701) == 15);
+
+	assert(calculateBabySitterPay('B', 1700, 2104) == 60);
+	assert(calculateBabySitterPay('B', 2222, 2323) == 16);
+	assert(calculateBabySitterPay('B', 201, 300) == 16);
+
+	assert(calculateBabySitterPay('C', 1910, 2011) == 42);
+	assert(calculateBabySitterPay('C', 2206, 2307) == 30);
 }
 
 
