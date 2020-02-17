@@ -80,6 +80,12 @@ static void whenBabySitterCalculatorIsPassedTimesThatSpanRates(void)
 }
 
 
+static void whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHours(void)
+{
+	assert(calculateBabySitterPay('A', 2200, 2230) == 15);
+}
+
+
 int main(void)
 {
 	whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero();
@@ -87,6 +93,7 @@ int main(void)
 	whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne();
 	whenBabySitterCalculatorIsPassedMultipleHoursInOneRate();
 	whenBabySitterCalculatorIsPassedTimesThatSpanRates();
+	whenBabySitterCalculatorIsPassedFractionalHoursItShouldRoundToFullHours();
 
 	return 0;
 }

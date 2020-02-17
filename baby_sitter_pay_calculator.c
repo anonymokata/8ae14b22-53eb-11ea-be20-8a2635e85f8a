@@ -33,7 +33,7 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 {
 	size_t sitterPay = 0;
 	familyRateInfo const* familyRates;
-	size_t idx, adjustedStart, adjustedStop;
+	size_t idx, adjustedStart, adjustedStop, numHours;
 
 	if ((validateBabySittingTimes(startTime, stopTime)) == 1)
 	{
@@ -49,8 +49,16 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 					/* Make sure the start time falls into this bucket. */
 					if (adjustedStart < familyRates->rates[idx].stopTime)
 					{
-						sitterPay += (((familyRates->rates[idx].stopTime - adjustedStart) *
-							familyRates->rates[idx].hourlyRate) / 100);
+						numHours = familyRates->rates[idx].stopTime - adjustedStart;
+
+						/* Round any fractional hour to a full hour in the
+						   same rate plan. */
+						if (numHours % 100)
+						{
+							numHours += 100;
+						}
+
+						sitterPay += (numHours / 100 ) * familyRates->rates[idx].hourlyRate;
 
 						/* Set the new start to be the end of the current period so we can subtract*/
 						adjustedStart = familyRates->rates[idx].stopTime;
@@ -58,9 +66,16 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 				}
 				else
 				{
-					/* We've gotten to a point where our ending time is <= a rate plan. */
-					sitterPay += (((adjustedStop - adjustedStart) *
-						familyRates->rates[idx].hourlyRate) / 100);
+					numHours = adjustedStop - adjustedStart;
+
+					/* Round any fractional hour to a full hour in the
+					   same rate plan. */
+					if (numHours % 100)
+					{
+						numHours += 100;
+					}
+
+					sitterPay += (numHours / 100) * familyRates->rates[idx].hourlyRate;
 					break;
 				}
 			}
