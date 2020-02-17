@@ -46,11 +46,15 @@ size_t calculateBabySitterPay(char const familyName, size_t startTime, size_t st
 			{
 				if (adjustedStop > familyRates->rates[idx].stopTime)
 				{
-					sitterPay += (((familyRates->rates[idx].stopTime - adjustedStart) *
-						familyRates->rates[idx].hourlyRate) / 100);
+					/* Make sure the start time falls into this bucket. */
+					if (adjustedStart < familyRates->rates[idx].stopTime)
+					{
+						sitterPay += (((familyRates->rates[idx].stopTime - adjustedStart) *
+							familyRates->rates[idx].hourlyRate) / 100);
 
-					/* Set the new start to be the end of the current period so we can subtract*/
-					adjustedStart = familyRates->rates[idx].stopTime;
+						/* Set the new start to be the end of the current period so we can subtract*/
+						adjustedStart = familyRates->rates[idx].stopTime;
+					}
 				}
 				else
 				{

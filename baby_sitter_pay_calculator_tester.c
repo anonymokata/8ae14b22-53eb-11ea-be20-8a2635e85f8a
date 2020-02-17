@@ -50,11 +50,33 @@ static void whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne(void)
 }
 
 
+static void whenBabySitterCalculatorIsPassedMultipleHoursInOneRate(void)
+{
+	assert(calculateBabySitterPay('A', 1800, 2300) == 75);
+	assert(calculateBabySitterPay('A', 2300, 300) == 80);
+
+	assert(calculateBabySitterPay('B', 1900, 2200) == 36);
+	assert(calculateBabySitterPay('B', 2300, 0) == 8);
+	assert(calculateBabySitterPay('B', 100, 300) == 32);
+
+	assert(calculateBabySitterPay('C', 1700, 2000) == 63);
+	assert(calculateBabySitterPay('C', 2200, 200) == 60);
+}
+
+
 static void whenBabySitterCalculatorIsPassedTimesThatSpanRates(void)
 {
 	assert(calculateBabySitterPay('A', 2200, 0) == 35);
 	assert(calculateBabySitterPay('A', 1800, 200) == 135);
 	assert(calculateBabySitterPay('A', 1700, 400) == 190);
+
+	assert(calculateBabySitterPay('B', 2100, 2300) == 20);
+	assert(calculateBabySitterPay('B', 2300, 100) == 24);
+	assert(calculateBabySitterPay('B', 1700, 400) == 140);
+
+	assert(calculateBabySitterPay('C', 2000, 2200) == 36);
+	assert(calculateBabySitterPay('C', 1700, 0) == 129);
+	assert(calculateBabySitterPay('C', 1700, 400) == 189);
 }
 
 
@@ -63,6 +85,7 @@ int main(void)
 	whenBabySitterCalculatorIsPassedInvalidTimesItReturnsZero();
 	whenBabySitterCalculatorIsPassedAnInvalidFamilyNameItReturnsZero();
 	whenBabySitterCalculatorIsPassedOneHourItReturnsTheRateXOne();
+	whenBabySitterCalculatorIsPassedMultipleHoursInOneRate();
 	whenBabySitterCalculatorIsPassedTimesThatSpanRates();
 
 	return 0;

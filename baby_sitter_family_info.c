@@ -21,7 +21,7 @@ static familyRateInfo const familyRates[] =
 	},
 	{ 'C',
 		{
-			{ 21,	CONVERT_TO_12_HOUR(1700),	CONVERT_TO_12_HOUR(2200) },
+			{ 21,	CONVERT_TO_12_HOUR(1700),	CONVERT_TO_12_HOUR(2100) },
 			{ 15,	CONVERT_TO_12_HOUR(2200),	CONVERT_TO_12_HOUR(400) }
 		}
 	}
