@@ -35,7 +35,7 @@ typedef struct
 	@param familyName	The name of the family that is requesting the
 						baby sitter.
 
-	@return				A pointer to the family_rate_info structure.
+	@return				A pointer to the familyRateInfo structure.
 */
 familyRateInfo const* getFamilyRates(char const familyName);
 
