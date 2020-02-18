@@ -6,13 +6,15 @@ https://github.com/PillarTechnology/kata-babysitter
 It was built with Microsoft Visual Studio Community 2019, Version 16.4.5.
 
 # Execution Instructions for the Microsoft Visual Studio 2019 GUI:
-    Download or clone the BabySitterKata repo into Microsoft Visual Studio 2019.
+    Open Microsoft Visual Studio 2019 and select 'Clone or check out code'.
+    Enter 'https://github.com/luapsitnam/BabySitterKata' as the Repository location and select 'Clone'.
     Right click on the BabySitterKata.sln file in the Solution Explorer and select Clean.
     Right click on the BabySitterKata.sln file in the Solution Explorer and select Build.
     Right click on the BabySitterKata.vcxproj file in the Solution Explorer and select Debug.
     
 # Execution Instruction for the Microsoft Visual Studio 19 Developer Command Prompt:
-    Download or clone the BabySitterKata repo into Microsoft Visual Studio 2019.
+    Open Microsoft Visual Studio 2019 and select 'Clone or check out code'.
+    Enter 'https://github.com/luapsitnam/BabySitterKata' as the Repository location and select 'Clone'.
     Open a developer command prompt.
     In the prompt window, navigate to the location where the BabySitterKata.vcxproj file is located.
     Type msbuild BabySitterKata.vcxproj and you should see a "Build succeeded" message with build information above it.
